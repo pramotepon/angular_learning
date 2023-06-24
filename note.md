@@ -178,9 +178,75 @@
         ```
 
 4.  Display data and event handeling.
+
     - Angular data binding methods
-        - String interpolation
-          
+
+      - Scope
+
+        - HTML Scope
+        - CSS Scope
+        - JavaScript Scope
+
+      - String interpolation
+        - ประกาศตัวแปร
+          message: string = 'Message From Typescript Component File';
+        - เรียกใช้ตัวแปรที่สร้าง
+          {{ message }}
+      - Property binding
+        - สร้างตัวแปรเก็บค่า Property
+          imgUrl: string = 'https://img.freepik.com/free-photo/colorful-heart-air-balloon-shape-collection-concept-isolated-color-background-beautiful-heart-ball-event_90220-1047.jpg';
+        - แสดงค่า Property ใน html
+          ```
+          <img [src]="imgUrl" alt="" />
+          ```
+      - Class Binding
+        - สร้าง Css
+          .text-red{
+          color: red;
+          }
+        - ประกาศ Boolean
+          bool:boolean = true;
+        - เรียกใช้งาน class ใน html กำหนด value เป็น boolean ของเรา
+          ```
+          <h1 [class.text-red] = "bool">{{ message }}</h1>
+          ```
+      - Style Binding (https://www.w3schools.com/jsref/dom_obj_style.asp)
+        - ประกาศ Boolean
+          bool:boolean = true;
+        - เขียน Style ใน html การเขียนดูจาก https://www.w3schools.com/jsref/dom_obj_style.asp
+          ```
+          <h1 [style.color]="bool? 'red' : 'blue'">Style Binding</h1>
+          ```
+      - Event Binding
+        - สร้าง Method event
+          buttonClick() {
+          console.log('Button Click Event worked');
+          }
+        - เรียกใช้ Method ใน HTML
+          ```
+          <button (click)="buttonClick()">Click me</button>
+          ```
+      - Event Filtering (keyCode เอาไว้เช็คการ Enter หรืออะไรต่างๆที่ไม่ใช่ตัวอักษรธรรมดาก็ได้)
+        - เขียน Method event
+          onKeyup($event:any) {
+            if($event.keyCode == 13){
+          console.log('Enter key pressed.');
+          }
+          }
+        - เขียน Input สำหรับเรียกใช้ Method
+          ```
+          <input type="text" (keyup)="onKeyup($event)">
+          ```
+        * สามารถเขียนแบบสั้นๆได้โดย
+          - เขียน Method event
+            onKeyup() {
+            console.log('Enter key pressed.');
+            }
+          - เขียน Input สำหรับเรียกใช้ Method
+            ```
+            <input type="text" (keyup.enter)="onKeyup()">
+            ```
+
     - Angular Two-Way Data Binding
     - How to Handle Events in Angular
       - click

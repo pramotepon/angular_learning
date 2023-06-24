@@ -1,30 +1,25 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { PostComponent } from './post/post.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
-  title = 'learn-basic-angular';
-  parentMessage: string = "Message coming from parent component";
-  message:string = '';
-  fromChildOutput:string = '';
-
-  @ViewChild(PostComponent) childComp!: PostComponent;
-
-  constructor() {
-    // console.log(this.childComp);
+export class AppComponent {
+  message: string = 'Message From Typescript Component File';
+  // imgUrl: string = 'https://img.freepik.com/free-photo/colorful-heart-air-balloon-shape-collection-concept-isolated-color-background-beautiful-heart-ball-event_90220-1047.jpg';
+  bool: boolean = true;
+  // Event Binding
+  buttonClick() {
+    console.log('Button Click Event worked');
   }
-
-  ngAfterViewInit(): void {
-    // console.log(this.childComp);
-    // Promise.resolve().then(() => this.message = this.childComp.childMessage);
-    this.message = this.childComp.childMessage
-  }
-
-  reciveMessage($event:any) {
-    this.fromChildOutput = $event;
+  // Event filtering
+  // onKeyup($event:any) {
+  //   if($event.keyCode == 13){
+  // console.log('Enter key pressed.');
+  // }
+  // }
+  onKeyup() {
+      console.log('Enter key pressed.');
   }
 }
