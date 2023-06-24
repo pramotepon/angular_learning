@@ -217,6 +217,11 @@
           ```
           <h1 [style.color]="bool? 'red' : 'blue'">Style Binding</h1>
           ```
+
+    - Angular Two-Way Data Binding
+      - ส่งจาก ts มา html และส่งจาก html มา ts
+    - How to Handle Events in Angular
+
       - Event Binding
         - สร้าง Method event
           buttonClick() {
@@ -247,8 +252,12 @@
             <input type="text" (keyup.enter)="onKeyup()">
             ```
 
-    - Angular Two-Way Data Binding
-    - How to Handle Events in Angular
-      - click
-      - keyup
-      - filtering
+    - Template variable
+      - สร้าง Method ใน ts
+        onKeyup(username: any) {
+        console.log(username);
+        }
+      - เรียกใช้ Method ใน html
+        ```
+        <input type="text" (keyup.enter)="onKeyup(usename.value)" #usename>
+        ```

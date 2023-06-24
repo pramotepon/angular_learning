@@ -19,7 +19,8 @@ export class AppComponent {
   // console.log('Enter key pressed.');
   // }
   // }
-  onKeyup() {
-      console.log('Enter key pressed.');
+  // Template Variable
+  onKeyup(username: any) {
+    console.log(username);
   }
 }
