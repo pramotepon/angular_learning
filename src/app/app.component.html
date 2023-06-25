@@ -18,5 +18,10 @@
 <!-- Template Variable -->
 <!-- <input type="text" (keyup.enter)="onKeyup(usename.value)" #usename /> -->
 
+<!-- One-way and two-way Data binding -->
+<!-- <input type="text" value="one way data binding" /> -->
+<!-- One-way data binding. -->
+<input type="text" [value]="textValue" (keyup.enter)="onKeyup()" />
+
 <!-- Two ways data binding. -->
-<input type="text" [(ngModel)]="userName" (keyup.enter)="onKeyup()" />
+<input type="text" [(ngModel)]="textValue" (keyup.enter)="onKeyup()" />

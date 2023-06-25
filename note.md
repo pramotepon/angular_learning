@@ -263,6 +263,7 @@
         ```
 
 5.  Two ways data binding.
+
     - สร้างตัวแปรในไฟล์ ts
       userName: string = '';
     - สร้าง Method เพื่อเรียกใช้
@@ -279,5 +280,35 @@
       FormsModule,
       ],
 
-6. One-way vs two-way data binding.
-    
+6.  One-way vs two-way data binding.
+    - One-way
+      - สิ่งที่ใช้เพื่อ One-way data binding
+        1. String Interpolation - {{title}}
+        2. Property Binding - [src]
+        3. Class Binding - [class.text-red]
+        4. Style Binding - [style.backgroundColor]
+      - Can only bind data component to view.
+        - สร้างตัวแปรใน component และลองสร้าง Method
+          textValue: string = "Value is coming from component";
+          onKeyup() {
+          console.log(this.textValue);
+          }
+        - สร้าง Input ใน html เพื่อรับค่า value และทดสอบ one-way binding
+          ```
+          <input type="text" value="one way data binding" />
+          <input type="text" [value]="textValue" (keyup.enter)="onKeyup()" />
+          ```
+    - Two-way
+        1. Two-way Binding - [(ngModel)]
+      - Can bind data component to view and vice versa
+        - สร้างตัวแปรใน component และลองสร้าง Method
+            textValue: string = "Value is coming from component";
+            onKeyup() {
+            console.log(this.textValue);
+            }
+        - สร้าง Input พร้อมเรียกใช้ ngModel
+        ```
+        <input type="text" [(ngModel)]="textValue" (keyup.enter)="onKeyup()" />
+        ```
+
+7. Data binding and events

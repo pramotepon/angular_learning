@@ -11,6 +11,8 @@ export class AppComponent {
   bool: boolean = true;
   // Two ways data binding.
   userName: string = '';
+  // One way data binding
+  textValue: string = "Value is coming from component";
   // Event Binding
   buttonClick() {
     console.log('Button Click Event worked');
@@ -26,7 +28,11 @@ export class AppComponent {
   //   console.log(username);
   // }
   // Two ways data binding.
+  // onKeyup() {
+  //   console.log(this.userName);
+  // }
+  // One ways data binding.
   onKeyup() {
-    console.log(this.userName);
+    console.log(this.textValue);
   }
 }
