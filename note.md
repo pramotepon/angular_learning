@@ -261,3 +261,23 @@
         ```
         <input type="text" (keyup.enter)="onKeyup(usename.value)" #usename>
         ```
+
+5.  Two ways data binding.
+    - สร้างตัวแปรในไฟล์ ts
+      userName: string = '';
+    - สร้าง Method เพื่อเรียกใช้
+      onKeyup() {
+      console.log(this.userName);
+      }
+    - สร้าง Input พร้อมเรียกใช้ ngModel
+      ```
+      <input type="text" [(ngModel)]="userName" (keyup.enter)="onKeyup()" />
+      ```
+    - Import และเรียกใช้ Module
+      import { FormsModule } from '@angular/forms';
+      imports: [
+      FormsModule,
+      ],
+
+6. One-way vs two-way data binding.
+    

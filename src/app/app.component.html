@@ -6,7 +6,7 @@
 <!-- <img [src]="imgUrl" alt="" /> -->
 
 <!-- Style Binding -->
-<h1 [style.color]="bool? 'red' : 'blue'">Style Binding</h1>
+<h1 [style.color]="bool ? 'red' : 'blue'">Style Binding</h1>
 
 <!-- Event Binding -->
 <button (click)="buttonClick()">Click me</button>
@@ -16,4 +16,7 @@
 <!-- <input type="text" (keyup.enter)="onKeyup()"> -->
 
 <!-- Template Variable -->
-<input type="text" (keyup.enter)="onKeyup(usename.value)" #usename>
+<!-- <input type="text" (keyup.enter)="onKeyup(usename.value)" #usename /> -->
+
+<!-- Two ways data binding. -->
+<input type="text" [(ngModel)]="userName" (keyup.enter)="onKeyup()" />

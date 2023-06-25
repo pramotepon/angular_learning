@@ -9,6 +9,8 @@ export class AppComponent {
   message: string = 'Message From Typescript Component File';
   // imgUrl: string = 'https://img.freepik.com/free-photo/colorful-heart-air-balloon-shape-collection-concept-isolated-color-background-beautiful-heart-ball-event_90220-1047.jpg';
   bool: boolean = true;
+  // Two ways data binding.
+  userName: string = '';
   // Event Binding
   buttonClick() {
     console.log('Button Click Event worked');
@@ -20,7 +22,11 @@ export class AppComponent {
   // }
   // }
   // Template Variable
-  onKeyup(username: any) {
-    console.log(username);
+  // onKeyup(username: any) {
+  //   console.log(username);
+  // }
+  // Two ways data binding.
+  onKeyup() {
+    console.log(this.userName);
   }
 }
