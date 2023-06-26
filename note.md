@@ -360,7 +360,24 @@
                     <li *ngFor="let post of objArray">{{ post.postTitle }}</li>
                   </ul>
                   ```
-            - Change Direction
-              
+            - Change Direction (Add and Delete)
+              - สร้าง Method Add และ Delete
+                addNew() {
+                  this.objArray.push({
+                    id: 6,
+                    postTitle: 'Post 6'
+                  });
+                }
+                onDelete(id: number){
+                  this.objArray.splice(id, 1);
+                }
+              - ใน html สร้างปุ่ม Add และ Delete
+                <button (click)="addNew()">Add new data</button>
+                <ul>
+                  <li *ngFor="let post of objArray; let index = index">
+                    {{ post.postTitle }}
+                    <button (click)="onDelete(index)">Delete</button>
+                  </li>
+                </ul>
     # Learn About ngClass & ngStyle Directive.
     # Learn Difference of Structural and Attribute Directive.

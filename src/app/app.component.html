@@ -1,18 +1,8 @@
-<!-- ngFor Directive -->
-<p>{{ postArray }}</p>
+<!-- change Direction -->
+<button (click)="addNew()">Add new data</button>
 <ul>
-  <li>{{ postArray[0] }}</li>
-  <li>{{ postArray[1] }}</li>
-  <li>{{ postArray[2] }}</li>
-  <li>{{ postArray[3] }}</li>
-  <li>{{ postArray[4] }}</li>
-</ul>
-<!-- Fetch array -->
-<ul>
-  <li *ngFor="let post of postArray">{{ post }}</li>
-</ul>
-<!-- Fetch object array -->
-<ul>
-  <!-- <li *ngFor="let post of objArray">{{ post | json }}</li> -->
-  <li *ngFor="let post of objArray">{{ post.postTitle }}</li>
+  <li *ngFor="let post of objArray; let index = index">
+    {{ post.postTitle }}
+    <button (click)="onDelete(index)">Delete</button>
+  </li>
 </ul>

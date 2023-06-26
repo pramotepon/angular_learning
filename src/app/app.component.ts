@@ -22,4 +22,14 @@ export class AppComponent {
       console.log(this.postArray[i]);
     }
   }
+
+  addNew() {
+    this.objArray.push({
+      id: 6,
+      postTitle: 'Post 6'
+    });
+  }
+  onDelete(id: number){
+    this.objArray.splice(id, 1);
+  }
 }
