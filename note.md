@@ -314,4 +314,53 @@
 
 7.  Data binding and events (Task)
 
-8. Angular Directive
+8.  Angular Directive
+    # What is angular Directive and How to use.
+        - An angular directive is special type of technology that can manipulate the DOM object.
+        - Directive can do adding html elements removing html elements from DOM dynamically.
+    # Type of Angular Directive
+        1. Component Directive
+            - Which is an angular directive with a template view.
+        2. Structural Directive
+            - Which can change the DOM layout by adding and removing DOM elements.
+        3. Attribute Directive
+            - Which can change the appearance or behavior of an element, component, or another directive.
+        4. Custom Directive
+            - Which can create our custom directive from scratch.
+    # About
+        - ngIf Directive.
+        - ngTemplate Directive.
+        - ngSwitchCase Directive.
+        - ngFor Directive.
+            1. We use ngFor Directive to Render an Array inside the View.
+            2. NgFor Directive is a Structural Directive.
+            3. With NgFor Directive we can Manipulate The DOM.
+            - ตัวอย่างการใช้งาน
+              - Array
+                - สร้างตัวแปรใน Component ts
+                  postArray: Array<string> = ['Post 1', 'Post 2', 'Post 3', 'Post 4', 'Post 5'];
+                - เรียกใช้งาน ngFor ใน html
+                  ```
+                  <ul>
+                    <li *ngFor="let post of postArray">{{ post }}</li>
+                  </ul>
+                  ```
+              - Object Array
+                - สร้างตัวแปรใน Component ts
+                  objArray: Array<any> = [
+                    { id: 1, postTitle: 'Post 1' },
+                    { id: 2, postTitle: 'Post 2' },
+                    { id: 3, postTitle: 'Post 3' },
+                    { id: 4, postTitle: 'Post 4' },
+                    { id: 5, postTitle: 'Post 5' },
+                  ];
+                - เรียกใช้งาน ngFor ใน html
+                  ```
+                  <ul>
+                    <li *ngFor="let post of objArray">{{ post.postTitle }}</li>
+                  </ul>
+                  ```
+            - Change Direction
+              
+    # Learn About ngClass & ngStyle Directive.
+    # Learn Difference of Structural and Attribute Directive.
