@@ -6,33 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  message: string = 'Message From Typescript Component File';
-  // imgUrl: string = 'https://img.freepik.com/free-photo/colorful-heart-air-balloon-shape-collection-concept-isolated-color-background-beautiful-heart-ball-event_90220-1047.jpg';
-  bool: boolean = true;
-  // Two ways data binding.
-  userName: string = '';
-  // One way data binding
-  textValue: string = "Value is coming from component";
-  // Event Binding
-  buttonClick() {
-    console.log('Button Click Event worked');
-  }
-  // Event filtering
-  // onKeyup($event:any) {
-  //   if($event.keyCode == 13){
-  // console.log('Enter key pressed.');
-  // }
-  // }
-  // Template Variable
-  // onKeyup(username: any) {
-  //   console.log(username);
-  // }
-  // Two ways data binding.
-  // onKeyup() {
-  //   console.log(this.userName);
-  // }
-  // One ways data binding.
-  onKeyup() {
-    console.log(this.textValue);
-  }
+  postTitle: string = '';
+  postDetail: string = '';
+  imageURL: string = '';
+  postURL: string = '';
+  addBackground: boolean = false;
+
 }

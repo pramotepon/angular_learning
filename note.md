@@ -281,6 +281,7 @@
       ],
 
 6.  One-way vs two-way data binding.
+
     - One-way
       - สิ่งที่ใช้เพื่อ One-way data binding
         1. String Interpolation - {{title}}
@@ -299,16 +300,18 @@
           <input type="text" [value]="textValue" (keyup.enter)="onKeyup()" />
           ```
     - Two-way
-        1. Two-way Binding - [(ngModel)]
+      1. Two-way Binding - [(ngModel)]
       - Can bind data component to view and vice versa
         - สร้างตัวแปรใน component และลองสร้าง Method
-            textValue: string = "Value is coming from component";
-            onKeyup() {
-            console.log(this.textValue);
-            }
+          textValue: string = "Value is coming from component";
+          onKeyup() {
+          console.log(this.textValue);
+          }
         - สร้าง Input พร้อมเรียกใช้ ngModel
         ```
         <input type="text" [(ngModel)]="textValue" (keyup.enter)="onKeyup()" />
         ```
 
-7. Data binding and events
+7.  Data binding and events (Task)
+
+8. Angular Directive
