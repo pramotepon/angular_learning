@@ -486,3 +486,20 @@
             </h1>
             ```
     # Learn Difference of Structural and Attribute Directive.
+      - Structural Directive คืออะไร?
+        - With The Structural Directive we can manipulate the DOM (Document Object Model) by adding and removing HTML Elements to the DOM.
+          - Document Object Model by adding and removing HTML Elements to the DOM
+          - With the learning * Symbol we can Easily Identify a Structural Directive
+        1. Responsible for the HTML Layout.
+        2. Shape or Reshape the DOM Structure by adding and removing HTML Element.
+        3. Can Identyfy With leading * Symbol
+        4. Structural Directive - 
+          *ngFor
+          *ngIf
+          *ngSwitchCase
+      - Attribute Directive คืออะไร?
+        - With The Attribute Directive we can only change the Appearance of the DOM (Document Object Model)
+        1. Change the Appearance or the behavior of a DOM Element
+        2. Attribute Directive - 
+          ngStyle
+          ngClass
