@@ -457,7 +457,7 @@
             Hello Angular
           </h1>
           ```
-        - หรือ เขียนแบบใช้ ngStyle
+        - หรือ เขียนแบบใช้ ngStyle (Clean) 
           ```
           <h1
             [ngStyle]="{
@@ -468,4 +468,21 @@
             Hello Angular
           </h1>
           ```
+      - NgClass Directive
+        - การเขียนแบบ Class ดีกว่าแบบ inline style
+          - เขียน html แบบ class
+            ```
+            <h1 [class.main]="isActive" [class.text-weight]="isActive">Hello Angular</h1>
+            ```
+          - เขียน html แบบ ngClass (Clean) 
+            ```
+            <h1
+              [ngClass]="{
+                'main' : isActive,
+                'text-weight': isActive
+              }"
+            >
+              ngClass Directive
+            </h1>
+            ```
     # Learn Difference of Structural and Attribute Directive.

@@ -1,18 +1,13 @@
-<!-- NgStyle Directive -->
+<!-- NgClass Directive -->
 <h1>NgStyle Directive</h1>
-<h1
-  [style.color]="isActive ? 'red' : 'black'"
-  [style.textTransform]="isActive ? 'uppercase' : 'lowercase'"
->
-  Hello Angular
-</h1>
+<h1 [class.main]="isActive" [class.text-weight]="isActive">Hello Angular</h1>
 
-<!-- Multiple line (Clean) -->
+<!-- ngClass clean -->
 <h1
-  [ngStyle]="{
-    color: isActive ? 'red' : 'black',
-    textTransform: isActive ? 'uppercase' : 'lowercase'
+  [ngClass]="{
+    'main' : isActive,
+    'text-weight': isActive
   }"
 >
-  Hello Angular
+  ngClass Directive
 </h1>
