@@ -445,4 +445,27 @@
                   </li>
                 </ul>
     # Learn About ngClass & ngStyle Directive.
+      - NgStyle Directive
+        - สร้างตัวแปรใน Component มาจัดการ boolean
+          isActive: boolean = true;
+        - เขียน html แบบ style
+          ```
+          <h1
+            [style.color]="isActive ? 'red' : 'black'"
+            [style.textTransform]="isActive ? 'uppercase' : 'lowercase'"
+          >
+            Hello Angular
+          </h1>
+          ```
+        - หรือ เขียนแบบใช้ ngStyle
+          ```
+          <h1
+            [ngStyle]="{
+              color: isActive ? 'red' : 'black',
+              textTransform: isActive ? 'uppercase' : 'lowercase'
+            }"
+          >
+            Hello Angular
+          </h1>
+          ```
     # Learn Difference of Structural and Attribute Directive.

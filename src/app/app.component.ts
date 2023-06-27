@@ -9,6 +9,7 @@ export class AppComponent {
   // ngSwitch
   objArray: Array<string> = []
   stepForm: string = "";
+  isActive: boolean = true;
 
   onClick(status: string){
     this.stepForm = status;

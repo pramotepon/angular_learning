@@ -1,13 +1,18 @@
-<!-- ng switch -->
-<div>
-  <button (click)="onClick('step 1')">Step 1</button>
-  <button (click)="onClick('step 2')">Step 2</button>
-  <button (click)="onClick('step 3')">Step 3</button>
-</div>
+<!-- NgStyle Directive -->
+<h1>NgStyle Directive</h1>
+<h1
+  [style.color]="isActive ? 'red' : 'black'"
+  [style.textTransform]="isActive ? 'uppercase' : 'lowercase'"
+>
+  Hello Angular
+</h1>
 
-<div [ngSwitch]="stepForm">
-  <div *ngSwitchCase="'step 1'">Step 1 From</div>
-  <div *ngSwitchCase="'step 2'">Step 2 From</div>
-  <div *ngSwitchCase="'step 3'">Step 3 From</div>
-  <div *ngSwitchDefault>Somthing Else</div>
-</div>
+<!-- Multiple line (Clean) -->
+<h1
+  [ngStyle]="{
+    color: isActive ? 'red' : 'black',
+    textTransform: isActive ? 'uppercase' : 'lowercase'
+  }"
+>
+  Hello Angular
+</h1>
