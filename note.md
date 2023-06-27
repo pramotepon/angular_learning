@@ -376,6 +376,26 @@
               </ng-template>
               ```
         - ngSwitchCase Directive.
+            - ตัวอย่างการใช้งาน
+              - สร้างตัวแปรจัดการ case ต่างๆ
+                stepForm: string = "";
+              - สร้าง Method เพื่อจัดการ case
+                onClick(status: string){
+                  this.stepForm = status;
+                }
+              - สร้าง html ปุ่มเมื่อคลิ๊กให้เปลี่ยนแปลง case
+                <div>
+                  <button (click)="onClick('step 1')">Step 1</button>
+                  <button (click)="onClick('step 2')">Step 2</button>
+                  <button (click)="onClick('step 3')">Step 3</button>
+                </div>
+              - สร้าง html สำหรับ Switch case ต่างๆตามตัวแปร stepForm และ Default
+                <div [ngSwitch]="stepForm">
+                  <div *ngSwitchCase="'step 1'">Step 1 From</div>
+                  <div *ngSwitchCase="'step 2'">Step 2 From</div>
+                  <div *ngSwitchCase="'step 3'">Step 3 From</div>
+                  <div *ngSwitchDefault>Somthing Else</div>
+                </div>
         - ngFor Directive.
             1. We use ngFor Directive to Render an Array inside the View.
             2. NgFor Directive is a Structural Directive.

@@ -1,14 +1,13 @@
-<button (click)="addNew()">Add new data</button>
-<!-- ng-template directive -->
-<div *ngIf="objArray.length > 0; then postList else noData"></div>
-<ng-template #postList>
-  <ul>
-    <li *ngFor="let post of objArray; let index = index">
-      {{ post.postTitle }}
-      <button (click)="onDelete(index)">Delete</button>
-    </li>
-  </ul>
-</ng-template>
-<ng-template #noData>
-  <p>There is no Data to fetch ...</p>
-</ng-template>
+<!-- ng switch -->
+<div>
+  <button (click)="onClick('step 1')">Step 1</button>
+  <button (click)="onClick('step 2')">Step 2</button>
+  <button (click)="onClick('step 3')">Step 3</button>
+</div>
+
+<div [ngSwitch]="stepForm">
+  <div *ngSwitchCase="'step 1'">Step 1 From</div>
+  <div *ngSwitchCase="'step 2'">Step 2 From</div>
+  <div *ngSwitchCase="'step 3'">Step 3 From</div>
+  <div *ngSwitchDefault>Somthing Else</div>
+</div>
