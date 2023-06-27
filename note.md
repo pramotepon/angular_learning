@@ -329,7 +329,52 @@
             - Which can create our custom directive from scratch.
     # About
         - ngIf Directive.
+            - ตัวอย่างการใช้งาน
+              - เรียกใช้ ngIf ใน html
+                ```
+                <div *ngIf="objArray.length > 0">
+                  <ul>
+                    <li *ngFor="let post of objArray; let index = index">
+                      {{ post.postTitle }}
+                      <button (click)="onDelete(index)">Delete</button>
+                    </li>
+                  </ul>
+                </div>
+                <div *ngIf="objArray.length == 0">
+                  <p>There is no Data to fetch ...</p>
+                </div>
+                ```
         - ngTemplate Directive.
+            - เรียกใช้งาน ng-template แล้วกำหนดชื่อของ template
+              ```
+              <!-- ng-template directive -->
+              <div *ngIf="objArray.length > 0; else noData">
+                <ul>
+                  <li *ngFor="let post of objArray; let index = index">
+                    {{ post.postTitle }}
+                    <button (click)="onDelete(index)">Delete</button>
+                  </li>
+                </ul>
+              </div>
+              <ng-template #noData>
+                <p>There is no Data to fetch ...</p>
+              </ng-template>
+              ```
+            - หรือนำ template มาใช้งานกับเงือนไข if ได้โดยใช้ then
+              ```
+              <div *ngIf="objArray.length > 0; then postList else noData"></div>
+              <ng-template #postList>
+                <ul>
+                  <li *ngFor="let post of objArray; let index = index">
+                    {{ post.postTitle }}
+                    <button (click)="onDelete(index)">Delete</button>
+                  </li>
+                </ul>
+              </ng-template>
+              <ng-template #noData>
+                <p>There is no Data to fetch ...</p>
+              </ng-template>
+              ```
         - ngSwitchCase Directive.
         - ngFor Directive.
             1. We use ngFor Directive to Render an Array inside the View.
