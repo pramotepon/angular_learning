@@ -503,3 +503,20 @@
         2. Attribute Directive - 
           ngStyle
           ngClass
+
+9. Angular PIPES
+  # What is angular Pipe and How to use.
+    1. What is an Angular pipe?
+      - Pipes are used to transforming data into a particular format when we only need that data tranformed 'in' a template. or the HTML view.
+        - Angular - inbuilt pipes
+          1. Uppercase Pipe
+          2. Lowercase Pipe
+          3. Decimal / Number Pipe
+          4. Currency Pipe
+          5. Date Pipe
+          6. JSON Pipe
+          7. Percent Pipe
+          8. Slice Pipe
+  # What are the inbuilt Pipes in Angular.
+  # How to pass parameters to an Angular Pipe.
+  # How to create a custom Pipe from scratch.

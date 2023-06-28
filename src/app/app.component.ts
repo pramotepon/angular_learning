@@ -6,12 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // ngSwitch
-  objArray: Array<string> = []
-  stepForm: string = "";
-  isActive: boolean = true;
+  title: string = "Angular Course"
+  constructor(){
 
-  onClick(status: string){
-    this.stepForm = status;
   }
 }
