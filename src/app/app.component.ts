@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = "Angular Course"
+  title: string = "Angular Course";
+  count: number = 285645;
+  dcValue: number = 3.85674;
   constructor(){
 
   }

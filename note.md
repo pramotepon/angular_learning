@@ -510,8 +510,15 @@
       - Pipes are used to transforming data into a particular format when we only need that data tranformed 'in' a template. or the HTML view.
         - Angular - inbuilt pipes
           1. Uppercase Pipe
+            ```
+            <h1>{{ title | uppercase }}</h1>
+            ```
           2. Lowercase Pipe
+            ```
+            <h1>{{ title | lowercase }}</h1>
+            ```
           3. Decimal / Number Pipe
+            
           4. Currency Pipe
           5. Date Pipe
           6. JSON Pipe
