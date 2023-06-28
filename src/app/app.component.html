@@ -5,6 +5,10 @@
 <!-- Number -->
 <h1>{{ count | number }}</h1>
 <!-- Decimal pipe format x.xx -->
-<h1>{{ dcValue | number: '1.2-2' }}</h1>
+<h1>{{ dcValue | number : "1.2-2" }}</h1>
 <!-- Decimal pipe format xx.xx -->
-<h1>{{ dcValue | number: '2.2-2' }}</h1>
+<h1>{{ dcValue | number : "2.2-2" }}</h1>
+<!-- Currency Pipe -->
+<h1>{{ price | currency : "JPY" }}</h1>
+<h1>{{ price | currency : "JPY" : false }}</h1>
+<h1>{{ price | currency : "JPY" : false : '2.1-1' }}</h1>

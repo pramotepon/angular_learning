@@ -518,8 +518,17 @@
             <h1>{{ title | lowercase }}</h1>
             ```
           3. Decimal / Number Pipe
-            
+            ```
+            <h1>{{ count | number }}</h1>
+            <h1>{{ dcValue | number : "1.2-2" }}</h1>
+            <h1>{{ dcValue | number : "2.2-2" }}</h1>
+            ```
           4. Currency Pipe
+            ```
+            <h1>{{ price | currency : "JPY" }}</h1>
+            <h1>{{ price | currency : "JPY" : false }}</h1>
+            <h1>{{ price | currency : "JPY" : false : '2.1-1' }}</h1>
+            ```
           5. Date Pipe
           6. JSON Pipe
           7. Percent Pipe
