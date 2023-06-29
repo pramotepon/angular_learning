@@ -11,7 +11,11 @@ export class AppComponent {
   dcValue: number = 3.85674;
   price: number = 99.99;
   today: Date = new Date();
-  constructor(){
+  postObj: object = {
+    id: 1,
+    postTitle: "Post1"
+  }
+  constructor() {
 
   }
 }

@@ -540,6 +540,17 @@
             <h1>{{ today | date: 'shortDate' }}</h1>
             ```
           6. JSON Pipe
+            - เขียน object ใน Component ts
+              ```
+              postObj: object = {
+                id: 1,
+                postTitle: "Post1"
+              }
+              ```
+            - เรียกใช้ Json pipe ใน HTML
+              ```
+              <p>{{ postObj | json }}</p>
+              ```
           7. Percent Pipe
           8. Slice Pipe
   # What are the inbuilt Pipes in Angular.
