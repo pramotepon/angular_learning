@@ -552,6 +552,7 @@
               <p>{{ postObj | json }}</p>
               ```
           7. Percent Pipe
+            
           8. Slice Pipe
   # What are the inbuilt Pipes in Angular.
   # How to pass parameters to an Angular Pipe.

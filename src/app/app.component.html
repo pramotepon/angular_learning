@@ -11,9 +11,12 @@
 <!-- Currency Pipe -->
 <h1>{{ price | currency : "JPY" }}</h1>
 <h1>{{ price | currency : "JPY" : false }}</h1>
-<h1>{{ price | currency : "JPY" : false : '2.1-1' }}</h1>
+<h1>{{ price | currency : "JPY" : false : "2.1-1" }}</h1>
 <!-- Date Pipe https://angular.io/api/common/DatePipe -->
-<h1>{{ today | date: 'short' }}</h1>
-<h1>{{ today | date: 'shortDate' }}</h1>
+<h1>{{ today | date : "short" }}</h1>
+<h1>{{ today | date : "shortDate" }}</h1>
 <!-- JSON Pipe -->
 <p>{{ postObj | json }}</p>
+<!-- Percent Pipe *100 -->
+<h3>{{ 0.567 | percent }}</h3>
+<h3>{{ 5 | percent : "1.1-1" }}</h3>
