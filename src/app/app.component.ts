@@ -21,7 +21,12 @@ export class AppComponent {
     "post 3",
     "post 4",
     "post 5",
-  ]
+  ];
+  userDetail = {
+    name: "User 1",
+    city: "New york",
+    countryCode: "US",
+  }
   constructor() {
 
   }

@@ -574,3 +574,59 @@
   # What are the inbuilt Pipes in Angular.
   # How to pass parameters to an Angular Pipe.
   # How to create a custom Pipe from scratch.
+    - Custom pipe
+      - สร้าง Folder Pipes ใน Path ที่เราต้องการเรียกใช้งาน pipe
+      - สร้างไฟล์ pipeName.pipe.ts
+        - import Pipe และ Pipe tranform
+          ```
+          import { Pipe, PipeTransform } from "@angular/core";
+          ```
+        - กำหนดชื่อเรียกใช้งาน Pipe
+          ```
+          @Pipe({ name: 'append' })
+          ```
+        - สร้าง export class โดยทำการ implements PipeTransform มาใช้งาน
+          ```
+          export class AppendPipe implements PipeTransform {
+            
+          }
+          ```
+        - เขียน Method เพื่อกำหนด Format ที่จะ return ใน pipe
+          ```
+          transform(value: any, ...args: any[]) {
+            return "City Name: " + value;
+          }
+          ```
+      - Register module pipe ของเราใน app.module
+        - import pipe 
+          ```
+          import { AppendPipe } from './Pipes/append.pipe';
+          ```
+        - Register ใน declarations
+          ```
+          AppendPipe,
+          ```
+      - เรียกใช้งานใน html
+        ```
+        <h3> {{ userDetail.city | append }}</h3>
+        ```
+    - Generate custom pipe using angular cli
+      - พิมพ์ command
+        ng g pipe Pipes/appendCLI
+      - เขียน format return ที่เราต้องการใน pipe.ts
+        ```
+        import { Pipe, PipeTransform } from '@angular/core';
+        @Pipe({
+          name: 'appendCLI'
+        })
+        export class AppendCLIPipe implements PipeTransform {
+
+          transform(value: unknown, ...args: unknown[]): unknown {
+            return "City Name: " + value;
+          }
+        }
+        ```
+      - เรียกใช้งาน pipe ใน HTML
+        ```
+        <h3> {{ userDetail.city | appendCLI }}</h3>
+        ```

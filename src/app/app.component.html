@@ -22,3 +22,9 @@
 <h3>{{ 5 | percent : "1.1-1" }}</h3>
 <!-- Slice Pipe -->
 <h3>{{ postArray | slice : 0 : 3 }}</h3>
+<!-- Custom pipe -->
+<!-- <h3> City Name - {{ userDetail.city }}</h3> -->
+<h3> {{ userDetail.city | append }}</h3>
+<!-- Custom pipe CLI -->
+<h3> {{ userDetail.city | appendCLI }}</h3>
+<!-- Custom pipe with aggruments -->
