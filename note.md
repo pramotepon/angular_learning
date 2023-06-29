@@ -552,8 +552,25 @@
               <p>{{ postObj | json }}</p>
               ```
           7. Percent Pipe
-            
+            ```
+            <h3>{{ 0.567 | percent }}</h3>
+            <h3>{{ 5 | percent : "1.1-1" }}</h3>
+            ```
           8. Slice Pipe
+            - สร้าง Array ใน Component ts
+              ```
+              postArray: Array<string> = [
+                "post 1",
+                "post 2",
+                "post 3",
+                "post 4",
+                "post 5",
+              ]
+              ```
+            - เรียก pipe slice ใน html
+              ```
+              <h3>{{ postArray | slice : 0 : 3 }}</h3>
+              ```
   # What are the inbuilt Pipes in Angular.
   # How to pass parameters to an Angular Pipe.
   # How to create a custom Pipe from scratch.
