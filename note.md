@@ -530,6 +530,15 @@
             <h1>{{ price | currency : "JPY" : false : '2.1-1' }}</h1>
             ```
           5. Date Pipe
+            - เขียน Date ปัจจุบันใน Componen ts
+            ```
+            today: Date = new Date();
+            ```
+            - เรียน Pipe ใน HTML
+            ```
+            <h1>{{ today | date: 'short' }}</h1>
+            <h1>{{ today | date: 'shortDate' }}</h1>
+            ```
           6. JSON Pipe
           7. Percent Pipe
           8. Slice Pipe
