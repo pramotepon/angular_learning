@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PostService } from '../Services/post.service';
+import { Post } from '../models/post';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -32,7 +33,7 @@ export class PostComponent implements OnInit {
     this.messageEvent.emit(this.outputChildMessage);
   }
   addNewData(){
-    let newPost = {
+    let newPost: Post = {
       id: 7,
       postTitle: "Post 7"
     }

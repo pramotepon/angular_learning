@@ -705,109 +705,143 @@
           ```
 
 # Generate Angular Services using Angular CLI?
-  - Create
-    - พิมพ์คำสั่งใน Terminal
-      ng g s services/user
-  - Usage of angular CLI
-    - สร้างปุ่มมาเพื่อ add post
+
+- Create
+  - พิมพ์คำสั่งใน Terminal
+    ng g s services/user
+- Usage of angular CLI
+  - สร้างปุ่มมาเพื่อ add post
+    ```
+    <button (click)="addNewData()">Add New</button>
+    ```
+  - เขียน Method function ใน service โดยรับ Parameter 1 ค่าชื่อว่า data
+    ```
+    addPost(data: any) {
+      this.postList.push(data)
+    }
+    ```
+  - เขียน Method function ใน post component
+    ```
+    addNewData(){
+      let newPost = {
+        id: 7,
+        postTitle: "Post 7"
+      }
+      this.postService.addPost(newPost);
+    }
+    ```
+  - เราสามารถเขียน CRUD ได้ใน Service file
+
+# What is Dependency Injection and How to use?
+
+- การ Pass ข้อมูลจาก Service ไปแสดง
+  - Import Service ใน file Component ที่เราต้องการใช้
+    ```
+    import { PostService } from '../Services/post.service';
+    ```
+  - ลงทะเบียน Services ของเราใน Component providers
+    ```
+    @Component({
+      selector: 'app-post',
+      templateUrl: './post.component.html',
+      styleUrls: ['./post.component.css'],
+      providers: [PostService]
+    })
+    ```
+  - สร้างตัวแปรเพื่อรับค่าที่จะ assign มาจาก Service
+    ```
+    posts: Array<any> = [];
+    ```
+  - ใน Constructor ให้ new instance Service ของเรามาแบบ Dependency Injection และนำค่ามา Assign
+    ```
+    constructor(private postService: PostService) {
+      this.posts = postService.postList;
+    }
+    ```
+  - Loop ใช้งานใน HTML ของ Component
+    ```
+    <ul>
+      <li *ngFor="let post of posts">{{ post.postTitle }}</li>
+    </ul>
+    ```
+  - เรียกใช้งาน Component นั้น
+    ```
+    <app-post></app-post>
+    ```
+- DI Providers & Injectable Decorator
+  - การ Accessed service Only from this component class
+    - Generate component ใน Terminal
+      ng g c post-list
+    - ลงทะเบียน Services ของเราใน Component providers
       ```
-      <button (click)="addNewData()">Add New</button>
+      @Component({
+        selector: 'app-post-list',
+        templateUrl: './post-list.component.html',
+        styleUrls: ['./post-list.component.css'],
+        providers: [PostService]
+      })
       ```
-    - เขียน Method function ใน service โดยรับ Parameter 1 ค่าชื่อว่า data
+    - เขียน constructor ให้ instanct service มาและ assign ค่า
       ```
-      addPost(data: any) {
-        this.postList.push(data)
+      constructor(private postService: PostService) {
+        this.postList = postService.postList;
       }
       ```
-    - เขียน Method function ใน post component
+    - Import และลงทะเบียน declarations ใน app module
+      ```
+      import { PostListComponent } from './post-list/post-list.component';
+      declarations: [
+        PostListComponent,
+      ],
+      ```
+    - เรียกใช้ Component ใน html
+      ```
+      <app-post-list></app-post-list>
+      ```
+- Best practic (ไม่ต้องทำการลงทะเบียนทุกครั้งแต่ทำเพียงแค่ครั้งเดียว)
+  - ทำเหมือนด้านบน แต่ลบส่วนของการลงทะเบียน Services ของเราใน Component providers ออกแล้วเปลี่ยนเป็นนำ Service ไปลงทะเบียนใน app module แทนในส่วนของ providers
+    ```
+    import { PostService } from './Services/post.service';
+    providers: [
+      PostService
+    ],
+    ```
+  - เขียน Inject decorator class ใน Service
+    - import และกำหนดให้ Injectable กับ root app
+      ```
+      import { Injectable } from "@angular/core"
+      @Injectable({ providedIn: 'root' })
+      ```
+
+# What is Data modeling and Angular interface?
+
+    - เพื่อกำหนด Format หรือ Blueprint ของข้อมูล
+    - ทำการสร้าง Interface โดยใช้ CLI ไฟล์ Interface จะอยู่ใน Folder models
+      ng g i models/post
+    - กำหนดรูปแบบของข้อมูลในไฟล์ interface ที่เรา generate มา
+      ```
+      export interface Post {
+        id: number,
+        postTitle: string,
+      }
+      ```
+    - Import Interface มาใช้งานใน Component ที่ต้องการ
+      ```
+      import { Post } from '../models/post';
+      ```
+    - แล้วทำการเรียกใช้ Interface โดยระบุเป็นรูปแบบของ type
       ```
       addNewData(){
-        let newPost = {
+        let newPost: Post = {
           id: 7,
           postTitle: "Post 7"
         }
         this.postService.addPost(newPost);
       }
       ```
-    - เราสามารถเขียน CRUD ได้ใน Service file
-
-# What is Dependency Injection and How to use?
-  - การ Pass ข้อมูลจาก Service ไปแสดง
-    - Import Service ใน file Component ที่เราต้องการใช้
-      ```
-      import { PostService } from '../Services/post.service';
-      ```
-    - ลงทะเบียน Services ของเราใน Component providers
-      ```
-      @Component({
-        selector: 'app-post',
-        templateUrl: './post.component.html',
-        styleUrls: ['./post.component.css'],
-        providers: [PostService]
-      })
-      ```
-    - สร้างตัวแปรเพื่อรับค่าที่จะ assign มาจาก Service
-      ```
-      posts: Array<any> = [];
-      ```
-    - ใน Constructor ให้ new instance Service ของเรามาแบบ Dependency Injection และนำค่ามา Assign
-      ```
-      constructor(private postService: PostService) {
-        this.posts = postService.postList;
+    - ใน Interface เราสามารถกำหนด field ให้เป็น optional ได้โดยใช้เครื่องหมาย ? ต่อท้ายชื่อ field
+      export interface Post {
+        id: number,
+        postTitle: string,
+        date?: Date
       }
-      ```
-    - Loop ใช้งานใน HTML ของ Component
-      ```
-      <ul>
-        <li *ngFor="let post of posts">{{ post.postTitle }}</li>
-      </ul>
-      ```
-    - เรียกใช้งาน Component นั้น
-      ```
-      <app-post></app-post>
-      ```
-  - DI Providers & Injectable Decorator
-    - การ Accessed service Only from this component class
-      - Generate component ใน Terminal
-        ng g c post-list
-      - ลงทะเบียน Services ของเราใน Component providers
-        ```
-        @Component({
-          selector: 'app-post-list',
-          templateUrl: './post-list.component.html',
-          styleUrls: ['./post-list.component.css'],
-          providers: [PostService]
-        })
-        ```
-      - เขียน constructor ให้ instanct service มาและ assign ค่า
-        ```
-        constructor(private postService: PostService) {
-          this.postList = postService.postList;
-        }
-        ```
-      - Import และลงทะเบียน declarations ใน app module
-        ```
-        import { PostListComponent } from './post-list/post-list.component';
-        declarations: [
-          PostListComponent,
-        ],
-        ```
-      - เรียกใช้ Component ใน html
-        ```
-        <app-post-list></app-post-list>
-        ```
-  - Best practic (ไม่ต้องทำการลงทะเบียนทุกครั้งแต่ทำเพียงแค่ครั้งเดียว)
-    - ทำเหมือนด้านบน แต่ลบส่วนของการลงทะเบียน Services ของเราใน Component providers ออกแล้วเปลี่ยนเป็นนำ Service ไปลงทะเบียนใน app module แทนในส่วนของ providers
-      ```
-      import { PostService } from './Services/post.service';
-      providers: [
-        PostService
-      ],
-      ```
-    - เขียน Inject decorator class ใน Service
-      - import และกำหนดให้ Injectable กับ root app
-        ```
-        import { Injectable } from "@angular/core"
-        @Injectable({ providedIn: 'root' })
-        ```
-# What is Data modeling and Angular interface?
