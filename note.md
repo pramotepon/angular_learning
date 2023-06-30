@@ -705,7 +705,32 @@
           ```
 
 # Generate Angular Services using Angular CLI?
-  
+  - Create
+    - พิมพ์คำสั่งใน Terminal
+      ng g s services/user
+  - Usage of angular CLI
+    - สร้างปุ่มมาเพื่อ add post
+      ```
+      <button (click)="addNewData()">Add New</button>
+      ```
+    - เขียน Method function ใน service โดยรับ Parameter 1 ค่าชื่อว่า data
+      ```
+      addPost(data: any) {
+        this.postList.push(data)
+      }
+      ```
+    - เขียน Method function ใน post component
+      ```
+      addNewData(){
+        let newPost = {
+          id: 7,
+          postTitle: "Post 7"
+        }
+        this.postService.addPost(newPost);
+      }
+      ```
+    - เราสามารถเขียน CRUD ได้ใน Service file
+
 # What is Dependency Injection and How to use?
   - การ Pass ข้อมูลจาก Service ไปแสดง
     - Import Service ใน file Component ที่เราต้องการใช้

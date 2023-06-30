@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core"
+@Injectable({ providedIn: 'root' })
 export class PostService {
-  // Pass object parameter
-  // @Injectable({ providedIn: 'root' })
 
   postList: Array<any> = [
     {
@@ -23,4 +22,8 @@ export class PostService {
       id: 6, postTitle: "Post 6"
     },
   ]
+
+  addPost(data: any) {
+    this.postList.push(data)
+  }
 }
