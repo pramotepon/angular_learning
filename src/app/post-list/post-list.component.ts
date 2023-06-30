@@ -1,12 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { PostService } from '../Services/post.service';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent {
-  @Input() fromPostParent: string = '';
-  constructor() { }
-
+  postList: Array<any> = [];
+  constructor(private postService: PostService) {
+    this.postList = postService.postList;
+  }
 }
