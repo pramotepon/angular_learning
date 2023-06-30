@@ -315,10 +315,14 @@
 7.  Data binding and events (Task)
 
 8.  Angular Directive
+
     # What is angular Directive and How to use.
+
         - An angular directive is special type of technology that can manipulate the DOM object.
         - Directive can do adding html elements removing html elements from DOM dynamically.
+
     # Type of Angular Directive
+
         1. Component Directive
             - Which is an angular directive with a template view.
         2. Structural Directive
@@ -327,7 +331,9 @@
             - Which can change the appearance or behavior of an element, component, or another directive.
         4. Custom Directive
             - Which can create our custom directive from scratch.
+
     # About
+
         - ngIf Directive.
             - ตัวอย่างการใช้งาน
               - เรียกใช้ ngIf ใน html
@@ -444,68 +450,74 @@
                     <button (click)="onDelete(index)">Delete</button>
                   </li>
                 </ul>
+
     # Learn About ngClass & ngStyle Directive.
-      - NgStyle Directive
-        - สร้างตัวแปรใน Component มาจัดการ boolean
-          isActive: boolean = true;
-        - เขียน html แบบ style
+
+    - NgStyle Directive
+      - สร้างตัวแปรใน Component มาจัดการ boolean
+        isActive: boolean = true;
+      - เขียน html แบบ style
+        ```
+        <h1
+          [style.color]="isActive ? 'red' : 'black'"
+          [style.textTransform]="isActive ? 'uppercase' : 'lowercase'"
+        >
+          Hello Angular
+        </h1>
+        ```
+      - หรือ เขียนแบบใช้ ngStyle (Clean)
+        ```
+        <h1
+          [ngStyle]="{
+            color: isActive ? 'red' : 'black',
+            textTransform: isActive ? 'uppercase' : 'lowercase'
+          }"
+        >
+          Hello Angular
+        </h1>
+        ```
+    - NgClass Directive
+      - การเขียนแบบ Class ดีกว่าแบบ inline style
+        - เขียน html แบบ class
+          ```
+          <h1 [class.main]="isActive" [class.text-weight]="isActive">Hello Angular</h1>
+          ```
+        - เขียน html แบบ ngClass (Clean)
           ```
           <h1
-            [style.color]="isActive ? 'red' : 'black'"
-            [style.textTransform]="isActive ? 'uppercase' : 'lowercase'"
-          >
-            Hello Angular
-          </h1>
-          ```
-        - หรือ เขียนแบบใช้ ngStyle (Clean) 
-          ```
-          <h1
-            [ngStyle]="{
-              color: isActive ? 'red' : 'black',
-              textTransform: isActive ? 'uppercase' : 'lowercase'
+            [ngClass]="{
+              'main' : isActive,
+              'text-weight': isActive
             }"
           >
-            Hello Angular
+            ngClass Directive
           </h1>
           ```
-      - NgClass Directive
-        - การเขียนแบบ Class ดีกว่าแบบ inline style
-          - เขียน html แบบ class
-            ```
-            <h1 [class.main]="isActive" [class.text-weight]="isActive">Hello Angular</h1>
-            ```
-          - เขียน html แบบ ngClass (Clean) 
-            ```
-            <h1
-              [ngClass]="{
-                'main' : isActive,
-                'text-weight': isActive
-              }"
-            >
-              ngClass Directive
-            </h1>
-            ```
-    # Learn Difference of Structural and Attribute Directive.
-      - Structural Directive คืออะไร?
-        - With The Structural Directive we can manipulate the DOM (Document Object Model) by adding and removing HTML Elements to the DOM.
-          - Document Object Model by adding and removing HTML Elements to the DOM
-          - With the learning * Symbol we can Easily Identify a Structural Directive
-        1. Responsible for the HTML Layout.
-        2. Shape or Reshape the DOM Structure by adding and removing HTML Element.
-        3. Can Identyfy With leading * Symbol
-        4. Structural Directive - 
-          *ngFor
-          *ngIf
-          *ngSwitchCase
-      - Attribute Directive คืออะไร?
-        - With The Attribute Directive we can only change the Appearance of the DOM (Document Object Model)
-        1. Change the Appearance or the behavior of a DOM Element
-        2. Attribute Directive - 
-          ngStyle
-          ngClass
 
-9. Angular PIPES
-  # What is angular Pipe and How to use.
+    # Learn Difference of Structural and Attribute Directive.
+
+    - Structural Directive คืออะไร?
+      - With The Structural Directive we can manipulate the DOM (Document Object Model) by adding and removing HTML Elements to the DOM.
+        - Document Object Model by adding and removing HTML Elements to the DOM
+        - With the learning \* Symbol we can Easily Identify a Structural Directive
+      1. Responsible for the HTML Layout.
+      2. Shape or Reshape the DOM Structure by adding and removing HTML Element.
+      3. Can Identyfy With leading \* Symbol
+      4. Structural Directive -
+         *ngFor
+         *ngIf
+         \*ngSwitchCase
+    - Attribute Directive คืออะไร?
+      - With The Attribute Directive we can only change the Appearance of the DOM (Document Object Model)
+      1. Change the Appearance or the behavior of a DOM Element
+      2. Attribute Directive -
+         ngStyle
+         ngClass
+
+9.  Angular PIPES
+
+# What is angular Pipe and How to use.
+
     1. What is an Angular pipe?
       - Pipes are used to transforming data into a particular format when we only need that data tranformed 'in' a template. or the HTML view.
         - Angular - inbuilt pipes
@@ -571,9 +583,13 @@
               ```
               <h3>{{ postArray | slice : 0 : 3 }}</h3>
               ```
-  # What are the inbuilt Pipes in Angular.
-  # How to pass parameters to an Angular Pipe.
-  # How to create a custom Pipe from scratch.
+
+# What are the inbuilt Pipes in Angular.
+
+# How to pass parameters to an Angular Pipe.
+
+# How to create a custom Pipe from scratch.
+
     - Custom pipe
       - สร้าง Folder Pipes ใน Path ที่เราต้องการเรียกใช้งาน pipe
       - สร้างไฟล์ pipeName.pipe.ts
@@ -588,7 +604,7 @@
         - สร้าง export class โดยทำการ implements PipeTransform มาใช้งาน
           ```
           export class AppendPipe implements PipeTransform {
-            
+
           }
           ```
         - เขียน Method เพื่อกำหนด Format ที่จะ return ใน pipe
@@ -598,7 +614,7 @@
           }
           ```
       - Register module pipe ของเราใน app.module
-        - import pipe 
+        - import pipe
           ```
           import { AppendPipe } from './Pipes/append.pipe';
           ```
@@ -647,3 +663,86 @@
         ```
         <p>{{ dummyText | summary : 10 }}</p>
         ```
+
+10. Angular Services
+
+# What is Angular services and How to use?
+
+    - รับส่งข้อมูลได้โดยไม่ต้องสนใจ Relation
+    - (Component - 1 No Relationship) -> (Share Data Angular Service) -> Other Component [Component 2, Component 3, Component 3]
+    - Usage of Angular Services
+      - Simply be use Angular Services, to share data and common methods among components whether there is relationship between components or not ...
+
+# How to create Angular service from scratch?
+
+    - Create Angular service.
+      - Create folder Services
+      - Create file post.service.ts
+        - เขียน class export ใน file service.ts
+          ```
+          export class PostService {
+            postList: Array<any> = [
+              {
+                id:1,postTitle: "Post 1"
+              },
+              {
+                id:2,postTitle: "Post 2"
+              },
+              {
+                id:3,postTitle: "Post 3"
+              },
+              {
+                id:4,postTitle: "Post 4"
+              },
+              {
+                id:5,postTitle: "Post 5"
+              },
+              {
+                id:6,postTitle: "Post 6"
+              },
+            ]
+          }
+          ```
+
+# Generate Angular Services using Angular CLI?
+
+# What is Dependency Injection and How to use?
+  - การ Pass ข้อมูลจาก Service ไปแสดง
+    - Import Service ใน file Component ที่เราต้องการใช้
+      ```
+      import { PostService } from '../Services/post.service';
+      ```
+    - ลงทะเบียน Services ของเราใน Component providers
+      ```
+      @Component({
+        selector: 'app-post',
+        templateUrl: './post.component.html',
+        styleUrls: ['./post.component.css'],
+        providers: [PostService]
+      })
+      ```
+    - สร้างตัวแปรเพื่อรับค่าที่จะ assign มาจาก Service
+      ```
+      posts: Array<any> = [];
+      ```
+    - ใน Constructor ให้ new instance Service ของเรามาแบบ Dependency Injection และนำค่ามา Assign
+      ```
+      constructor(private postService: PostService) {
+        this.posts = postService.postList;
+      }
+      ```
+    - Loop ใช้งานใน HTML ของ Component
+      ```
+      <ul>
+        <li *ngFor="let post of posts">{{ post.postTitle }}</li>
+      </ul>
+      ```
+    - เรียกใช้งาน Component นั้น
+      ```
+      <app-post></app-post>
+      ```
+  - DI Providers & Injectable Decorator
+    - การ Accessed service Only from this component class
+      - Generate component ใน Terminal
+        ng g c post-list
+# What is Data modeling and Angular interface?

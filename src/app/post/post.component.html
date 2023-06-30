@@ -1,7 +1,12 @@
-<p>{{ 100 + 200 }}</p>
+<!-- <p>{{ 100 + 200 }}</p>
 <p>{{ title }}</p>
 <p>{{ fromParent }}</p>
 
 <app-post-list [fromPostParent]='postParentMessage'></app-post-list>
 
-<button (click)='sendMessage()'>Click</button>
+<button (click)='sendMessage()'>Click</button> -->
+
+<!-- Services -->
+<ul>
+  <li *ngFor="let post of posts">{{ post.postTitle }}</li>
+</ul>
