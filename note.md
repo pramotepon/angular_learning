@@ -994,5 +994,7 @@
         </div>
         ```
     - Address Text area
-
+      - เหมือนกับส่วนของ input ทั่วไป
+    - Form Submission
+      - เปลี่ยน (submit) ให้เป็น ngSubmit
 # How to control Enable/Disable state of a button?

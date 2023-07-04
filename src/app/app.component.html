@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="form-area">
-    <form #f="ngForm" (submit)="onSubmit(f)">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <label>First Name</label>
         <input
@@ -44,6 +44,7 @@
           #email="ngModel"
           pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
           required
+          [ngClass]="{ 'is-invalid': email.touched && email.invalid }"
         />
         <div *ngIf="email.errors?.['required']">
           <div
@@ -71,7 +72,18 @@
           class="form-control"
           name="address"
           ngModel
+          #address = 'ngModel'
+          required
+          [ngClass]="{ 'is-invalid': address.touched && address.invalid }"
         ></textarea>
+        <div *ngIf="address.errors?.['required']">
+          <div
+            class="alert alert-danger"
+            *ngIf="address.touched && address.invalid"
+          >
+            Address is required.
+          </div>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
