@@ -997,4 +997,12 @@
       - เหมือนกับส่วนของ input ทั่วไป
     - Form Submission
       - เปลี่ยน (submit) ให้เป็น ngSubmit
+
 # How to control Enable/Disable state of a button?
+
+- On invalid form
+  - จะเห็นว่าต่อให้เช็คค่าแล้วแต่ก็ยังทำงานในฟังก์ชั่นได้อยู่ดี
+  - ใส่ disabled ใน button
+  ```
+  <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+  ```
