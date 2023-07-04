@@ -1,4 +1,60 @@
-<!-- Service -->
-<app-post></app-post>
-<!-- DI Providers & Injectable Decorator -->
-<app-post-list></app-post-list>
+<div class="container mt-5">
+  <div class="form-area">
+    <form #f="ngForm" (submit)="onSubmit(f)">
+      <div class="form-group">
+        <label>First Name</label>
+        <input
+          type="text"
+          placeholder="Full name"
+          class="form-control is-invalid"
+          name="firstName"
+          ngModel
+          #firstName="ngModel"
+          (change)="getValue(firstName)"
+          required
+          [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }"
+          minlength="5"
+          maxlength="10"
+        />
+        <div *ngIf="firstName.errors?.['required']">
+          <div
+            class="alert alert-danger"
+            *ngIf="firstName.touched && firstName.invalid"
+          >
+            First name is required.
+          </div>
+        </div>
+        <div *ngIf="firstName.errors?.['minlength']">
+          <div
+            class="alert alert-danger"
+            *ngIf="firstName.touched && firstName.invalid"
+          >
+            First name must be atleast 5 charactor long.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="Email"
+          class="form-control"
+          name="email"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <textarea
+          cols="30"
+          rows="10"
+          placeholder="Address"
+          class="form-control"
+          name="address"
+          ngModel
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

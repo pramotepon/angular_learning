@@ -845,3 +845,115 @@
         postTitle: string,
         date?: Date
       }
+
+11. Angular template-driven forms
+  # What are the form types in Angular?
+    1. Template - Driven Form
+      - ใช้ Angular directive (ngForm)
+      - Full control of the form and we can validate.
+    2. Reactive Form.
+      - เขียนเองทั้งหมด
+  # What is template driven form and how to use that?
+    - Create Bootstrap form.
+      - เขียน HTML
+      - import bootstrap cdn
+    - ng Form directive
+      - import { FormsModule } from '@angular/forms';
+      - ประกาศชื่อ Form และกำหนด submit โดยส่งชื่อ Form เข้าไป ใน html
+        ```
+        <form #f="ngForm" (submit)="onSubmit(f)">
+        ```
+      - สร้าง Method สำหรับรับการ submit โดยรับค่า 1 ค่ามี type เป็น NgForm
+        ```
+        onSubmit(f:NgForm){
+          console.log(f);
+        }
+        ```
+    - ngForm Explained and FormGroup class
+      - Handle forms data มี 2 แบบ
+        1. FormGroup Class    ->  Form tags
+        2. FormControl Class  ->  Input fields
+          - สร้างได้ 2 วิธีคือ 
+            1. ประกาศ Instanct class formControl()
+            2. ใช้ ngForm
+    - ngModel and FormControl class
+      - การใช้ ngModel สามารถใช้ชื่อของ input แทนการประกาศชื่อใน ngModel ได้
+        ```
+        <input
+          type="text"
+          placeholder="Full name"
+          class="form-control"
+          name="firstName"
+          ngModel
+        />
+        ```
+  # How to Vilidate forms user inputs?
+    - กำหนด Validate ข้อมูล
+      - ประกาศชื่อ Model และเรียกใช้คำสั่ง Change
+        ```
+        <input
+          type="text"
+          placeholder="Full name"
+          class="form-control"
+          name="firstName"
+          ngModel
+          #firstName='ngModel'
+          (change)="getValue(firstName)"
+          required
+        />
+        ```
+      - import FormControl และสร้าง Funciton onChange โดยรับค่า 1 ค่ามี type เป็น any
+        ```
+        import { FormControl, NgForm } from '@angular/forms';
+        getValue(f: any) {
+          console.log(f);
+        }
+        ```
+      - แสดงผล Valid ข้อมูล
+        - ใช้ ngIf ในการเช็ด โดยใช้ชื่อ model ของ input.method
+          - invalid ตรวจสอบข้อผิดพลาด
+          - touched ในการเช็คว่ามีการ Focus แล้วหรอไม่
+        ```
+        <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+          First name is required.
+        </div>
+        ```
+    - Styling invalid inputs
+      - เขียน css โดยใน Angular จะมีการเพิ่ม class ให้ในส่วนของ input ไว้ใช้งาน
+        ```
+        .form-control.ng-touched.ng-invalid{
+          border: 2px solid red;
+        }
+        ```
+      - use Class binding
+        ```
+        [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }"
+        ```
+    - Validation types
+      - กำหนดเงื่อนไข minlength maxlength ใน HTML
+        ```
+        minlength="5"
+        maxlength="10"
+        ```
+      - ใช้ ngIf เช็ค Error ตามเงื่อนไข
+        ```
+        <div *ngIf="firstName.errors?.['required']">
+          <div
+            class="alert alert-danger"
+            *ngIf="firstName.touched && firstName.invalid"
+          >
+            First name is required.
+          </div>
+        </div>
+        <div *ngIf="firstName.errors?.['minlength']">
+          <div
+            class="alert alert-danger"
+            *ngIf="firstName.touched && firstName.invalid"
+          >
+            First name must be atleast 5 charactor long.
+          </div>
+        </div>
+        ```
+    - Email input field
+      
+  # How to control Enable/Disable state of a button?
