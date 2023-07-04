@@ -847,13 +847,17 @@
       }
 
 11. Angular template-driven forms
-  # What are the form types in Angular?
+
+# What are the form types in Angular?
+
     1. Template - Driven Form
       - ใช้ Angular directive (ngForm)
       - Full control of the form and we can validate.
     2. Reactive Form.
       - เขียนเองทั้งหมด
-  # What is template driven form and how to use that?
+
+# What is template driven form and how to use that?
+
     - Create Bootstrap form.
       - เขียน HTML
       - import bootstrap cdn
@@ -873,7 +877,7 @@
       - Handle forms data มี 2 แบบ
         1. FormGroup Class    ->  Form tags
         2. FormControl Class  ->  Input fields
-          - สร้างได้ 2 วิธีคือ 
+          - สร้างได้ 2 วิธีคือ
             1. ประกาศ Instanct class formControl()
             2. ใช้ ngForm
     - ngModel and FormControl class
@@ -887,7 +891,9 @@
           ngModel
         />
         ```
-  # How to Vilidate forms user inputs?
+
+# How to Vilidate forms user inputs?
+
     - กำหนด Validate ข้อมูล
       - ประกาศชื่อ Model และเรียกใช้คำสั่ง Change
         ```
@@ -955,5 +961,38 @@
         </div>
         ```
     - Email input field
-      
-  # How to control Enable/Disable state of a button?
+      - using attribute pattern
+        ```
+        <input
+          type="email"
+          placeholder="Email"
+          class="form-control"
+          name="email"
+          ngModel
+          #email="ngModel"
+          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+          required
+        />
+        ```
+      - แสดงผล Error แบบด้านบนเพียงแค่เปลี่ยนเป็นชื่อที่ binding
+        ```
+        <div *ngIf="email.errors?.['required']">
+          <div
+            class="alert alert-danger"
+            *ngIf="email.touched && email.invalid"
+          >
+            Email is required.
+          </div>
+        </div>
+        <div *ngIf="email.errors?.['pattern']">
+          <div
+            class="alert alert-danger"
+            *ngIf="email.touched && email.invalid"
+          >
+            Invalid email address ...
+          </div>
+        </div>
+        ```
+    - Address Text area
+
+# How to control Enable/Disable state of a button?
