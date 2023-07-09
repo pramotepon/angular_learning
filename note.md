@@ -875,8 +875,8 @@
         ```
     - ngForm Explained and FormGroup class
       - Handle forms data มี 2 แบบ
-        1. FormGroup Class    ->  Form tags
-        2. FormControl Class  ->  Input fields
+        1. FormGroup Class    ->  Form tags (ngForm)
+        2. FormControl Class  ->  Input fields (ngModel)
           - สร้างได้ 2 วิธีคือ
             1. ประกาศ Instanct class formControl()
             2. ใช้ ngForm
@@ -1006,3 +1006,93 @@
   ```
   <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
   ```
+
+12. Angular reactive forms
+  # What is reactive forms & How to use them.
+    - Form setup
+      1. import ReactiveFormsModule ในไฟล์ module
+        import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+      2. Register ในส่วนของ imports
+        imports: [
+          ReactiveFormsModule
+        ],
+      3. เขียน Form ใน HTML
+      4. import FormGroup และ FormControl ใน component
+        import { FormControl, FormGroup } from '@angular/forms';
+      5. ประกาศตัวแปร form type เป็น any
+        form: any;
+      6. ใน Constructor instanct FormGroup โดยส่งค่าเป็น object key เป็นชื่อ data และ value เป็น Instanct FormControl()
+        ```
+        this.form = new FormGroup({
+          firstName: new FormControl(),
+          email: new FormControl(),
+          address: new FormControl()
+        });
+        ```
+      7. ใน HTML ทำการ bind [formGroup] = form ที่เราทำการ instanct ไว้ใน Component
+        ```
+        <form [formGroup]="form">
+        ```
+      8. กำหนด formControlName ให้กับ input ต่างๆใน html
+        ```
+        formControlName="firstName"
+        ```
+  # How to validate a reactive form?
+    1. ไฟล์ component ใน FormControl กำหนด initial value = '' และกำหนดเงื่อนไขการ validate ต่างๆใน parameter ที่ 2 
+    ```
+    this.form = new FormGroup({
+      fullName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      email: new FormControl(),
+      address: new FormControl()
+    });
+    ```
+    2. เขียน method get เพื่อส่งค่าไปให้ HTML
+    ```
+    get fullname(){
+      return this.form.get('fullName');
+    }
+    ```
+    3. เขียนเงื่อนไขและจัดการกับ validate
+    ```
+    <div
+      class="alert alert-danger"
+      *ngIf="fullname.touched && fullname.invalid"
+    >
+      <div *ngIf="fullname.errors?.required" >Required</div>
+      <div *ngIf="fullname.errors?.minlength" >Length</div>
+    </div>
+    ```
+    - การเขียน pattern
+      1.  สร้างตัวแปรกำหนดเงื่อนไข
+      ```
+      emailRegex: string = "[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$";
+      ```
+      2.  เขียน validate pattern โดยใส่ค่าเงื่อนไขเข้าไป
+      ```
+      Validators.pattern(this.emailRegex)
+      ```
+      ** หรือใช้ Validators.email ก็ได้
+      3. เขียน method get Email
+      ```
+      get Email(){
+        return this.form.get('email')
+      }
+      ```
+      4. เขียนเงื่อนไขและจัดการกับ validate
+      ```
+      <div
+          class="alert alert-danger"
+          *ngIf="Email.touched && Email.invalid"
+      >
+        <div *ngIf="Email.errors?.required" >Required</div>
+        <div *ngIf="Email.errors?.email" >Pattern</div>
+      </div>
+      ```
+  # How to get Data From Reactive Forms?
+    - Reactive form submit and getting form values
+  # How to nest form group?
+  # Reactive Form Arrays, Form Builders.
+  # Custom Form Validators.

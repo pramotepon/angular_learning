@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
+import { FormControl, NgForm, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,36 +7,33 @@ import { FormControl, NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = "Angular Course";
-  count: number = 285645;
-  dcValue: number = 3.85674;
-  price: number = 99.99;
-  today: Date = new Date();
-  postObj: object = {
-    id: 1,
-    postTitle: "Post1"
-  }
-  postArray: Array<string> = [
-    "post 1",
-    "post 2",
-    "post 3",
-    "post 4",
-    "post 5",
-  ];
-  userDetail = {
-    name: "User 1",
-    city: "New york",
-    countryCode: "US",
-  }
-  dummyText: string = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
+  form: any;
+  emailRegex: string = "[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$";
 
   constructor() {
+    this.form = new FormGroup({
+      fullName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        // Validators.pattern(this.emailRegex)
+        Validators.email
+      ]),
+      address: new FormControl('', Validators.required)
+    });
+  }
 
+  get fullname(){
+    return this.form.get('fullName');
   }
-  onSubmit(f: NgForm) {
-    console.log(f.value);
+
+  get Email(){
+    return this.form.get('email')
   }
-  getValue(f: any) {
-    console.log(f);
+
+  get Address(){
+    return this.form.get('address')
   }
 }
