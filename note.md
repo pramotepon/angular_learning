@@ -1092,7 +1092,6 @@
       </div>
       ```
   # How to get Data From Reactive Forms?
-    - Reactive form submit and getting form values
       1. กำหนด disabled ให้ submit button
       ```
       <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
@@ -1108,5 +1107,64 @@
       }
       ```
   # How to nest form group?
+    1. กำหนด FormGroup validate ใน component
+    ```
+    constructor() {
+      this.form = new FormGroup({
+        fullName: new FormControl('', [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          // Validators.pattern(this.emailRegex)
+          Validators.email
+        ]),
+        contactDetails: new FormGroup({
+          address: new FormControl('', Validators.required),
+          shippingAddress: new FormControl(),
+          contactNo: new FormControl()
+        })
+      });
+    }
+    ```
+    2. เขียน Method return ค่านั้น
+    ```
+    get Address(){
+      return this.form.get('contactDetails.address')
+    }
+
+    get ShippingAddress(){
+      return this.form.get('contactDetails.shippingAddress')
+    }
+
+    get Contact(){
+      return this.form.get('contactDetails.contactNo')
+    }
+    ```
+    3. เขียน html element มาครอบ group ของ input ไว้
+    ```
+    <div formGroupName="contactDetails">
+    ```
+    4. เช็ค Validate ปกติได้เลย
+    ```
+    <div class="form-group">
+        <label>Address</label>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder="Address"
+            class="form-control"
+            name="address"
+            formControlName="address"
+          ></textarea>
+          <div
+            class="alert alert-danger"
+            *ngIf="Address.touched && Address.invalid"
+          >
+        <div *ngIf="Address.errors?.required">Required</div>
+      </div>
+    </div>
+    ```
   # Reactive Form Arrays, Form Builders.
   # Custom Form Validators.
