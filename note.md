@@ -1093,6 +1093,20 @@
       ```
   # How to get Data From Reactive Forms?
     - Reactive form submit and getting form values
+      1. กำหนด disabled ให้ submit button
+      ```
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+      ```
+      2. กำหนด ngSubmit ให้กับ form
+      ```
+      <form [formGroup]='form' (ngSubmit)="onSubmit()">
+      ```
+      3. เขียน method เพื่อให้ form ใช้งาน และแสดงผลค่า value
+      ```
+      onSubmit(){
+        console.log(this.form.value);
+      }
+      ```
   # How to nest form group?
   # Reactive Form Arrays, Form Builders.
   # Custom Form Validators.

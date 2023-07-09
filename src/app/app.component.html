@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="form-area">
     <h1>Reactive form</h1>
-    <form [formGroup]='form'>
+    <form [formGroup]='form' (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>First Name</label>
         <input
@@ -55,7 +55,7 @@
           <div *ngIf="Address.errors?.required" >Required</div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
     </form>
   </div>
 </div>

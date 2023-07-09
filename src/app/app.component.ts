@@ -36,4 +36,9 @@ export class AppComponent {
   get Address(){
     return this.form.get('address')
   }
+
+  onSubmit(){
+    console.log(this.form.value);
+
+  }
 }
