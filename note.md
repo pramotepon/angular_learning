@@ -1224,5 +1224,111 @@
     - Form Builder (Clean code)
       - เนื่องจากการใช้ FormControl และการสร้าง Getter เพื่อ Binding ค่านั้นต้องเรียกใช้งานซ้ำๆ
         - import FormBuilder
-        - ใน constructor ประกาศตัวแปร fb มี type เป็น FormBuilder
+          ```
+          import { FormBuilder } from '@angular/forms';
+          ```
+        - ใน constructor ประกาศตัวแปร fb มี type เป็น FormBuilder (fb จะมี method array, control และ group ให้เลือกใช้)
+          ```
+          constructor(fb: FormBuilder)
+          ```
+        - เรียกใช้งาน method group แล้วส่งค่า เข้าไปเป็น array [initialValue, [Validate]] มาเก็บไว้ที่ตัวแปร this.form ที่เราประกาศไว้
+          ```
+          this.form = fb.group({
+            fullName: ['', [
+              Validators.required,
+              Validators.minLength(5)
+            ]],
+            email: ['', [
+              Validators.required,
+              Validators.email
+            ]],
+            contactDetails: fb.group({
+              address: ['', Validators.required],
+              shippingAddress: ['', Validators.required],
+              contactNo: ['', [
+                Validators.required,
+                Validators.pattern(this.contactRegex)
+              ]]
+            }),
+            skills: fb.array([])
+          })
+          ```
+        - จะเห็นว่า Code ดูสั้นและเรียบร้อยขึ้น
   # Custom Form Validators.
+    - username without space
+      - Inject form builder ใน constructor
+      ```
+      constructor(fb: FormBuilder)
+      ```
+      - เขียนเงื่อนไข validate ต่างๆใน constructor
+      ```
+      this.form = fb.group({
+        username: ['', [
+          Validators.required,
+          Validators.minLength(5)
+        ]],
+        password: ['', Validators.required]
+      })
+      ```
+      - เขียน getter method แค่ครั้งเดียว
+      ```
+      get fc(){
+        return this.form.controls
+        // this.fc.username
+        // this.fc.password
+      }
+      ```
+      - เขียน html สำหรับทดสอบ validate
+      ```
+      <div class="container">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" formControlName="username" />
+            <div
+              class="alert alert-danger"
+              *ngIf="fc.username.touched && fc.username.invalid"
+            >
+              <div *ngIf="fc.username.errors?.required">Required</div>
+              <div *ngIf="fc.username.errors?.minlength">Length</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password" />
+            <div
+              class="alert alert-danger"
+              *ngIf="fc.password.touched && fc.password.invalid"
+            >
+              <div *ngIf="fc.password.errors?.required">Required</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      ```
+      - สร้าง Folder validators ใน app/
+      - สร้างไฟล์ nospace.validators.ts
+      - ในไฟล์ validators เขียนเงื่อนไขที่ต้องการตรวจสอบลงไป
+        - import AbstractControl, ValidationErrors
+          ```
+          import { AbstractControl, ValidationErrors } from "@angular/forms";
+          ```
+        - สร้าง export class ขึ้นมา
+          ```
+          export class noSpace {
+            // สร้าง static method ขึ้นมาโดยรับค่า 1 ค่ามี type เป็น AbstractControl และ return ValidationErrors หรือ null กลับไป
+            static noSpaceValidations(control: AbstractControl): ValidationErrors | null {
+              // สร้างตัวแปรมารับค่าของ value ที่ส่งมาพร้อมแปลงเป็น string
+              let controlValue = control.value as string;
+              // เช็คเงื่อนไข
+              if (controlValue.indexOf(' ') >= 0) {
+                // ส่งค่ากลับไปเพื่อใช้ validate
+                return { noSpaceValidations: true }
+              } else {
+                return null;
+              }
+            }
+          }
+          ```
