@@ -1167,4 +1167,60 @@
     </div>
     ```
   # Reactive Form Arrays, Form Builders.
+    - Form Arrays
+      - import FormArray
+        import { FormArray } from '@angular/forms';
+      - เขียน FormArray ใน component
+        skills: new FormArray([])
+      - เขียน Method สำหรับรับค่ามาเก็บเข้า Array
+        ```
+        addSkills(skills: HTMLInputElement){
+          this.Skills.push(
+            new FormControl(skills.value)
+          );
+          skills.value = '';
+          console.log(this.form.value);
+
+        }
+        ```
+      - เขียน getter สำหรับแสดงข้อมูลของ Array
+        ```
+        get Skills(){
+          return this.form.get('skills') as FormArray;
+        }
+        ```
+      - เขียน HTML สำหรับกรอกข้อมูลเพื่อบันทึกและแสดงผล
+        ```
+        <div class="form-group">
+          <label for="">skills</label>
+          <input
+            type="text"
+            class="form-control"
+            #skill
+            (keyup.enter)="addSkills(skill)"
+          />
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let skill of Skills.controls">
+              {{ skill.value }}
+            </li>
+          </ul>
+        </div>
+        ```
+      - การ Remove array
+        - ใน ngFor รับประกาศตัวแปรเพื่อรับค่า index ด้วย
+          ```
+          <li class="list-group-item" *ngFor="let skill of Skills.controls; let i = index">
+          ```
+        - สร้างปุ่มสำหรับลบ เรียกใช้ Method removeSkills พร้อมส่งค่า index เข้าไป
+          ```
+          <a class="btn btn-sm btn-danger" (click)="removeSkills(i)"> X </a>
+          ```
+        - เขียน Method สำหรับลบค่าออกจาก Array โดยเรียกใช้งาน Method removeAt
+          ```
+          removeSkills(index: number){
+            this.Skills.removeAt(index)
+          }
+          ```
+    - Form Builder
+      - เนื่องจากการใช้ FormControl และการสร้าง Getter เพื่อ Binding ค่านั้นต้องเรียกใช้งานซ้ำๆ
   # Custom Form Validators.
