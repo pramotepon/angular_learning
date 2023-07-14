@@ -1221,6 +1221,8 @@
             this.Skills.removeAt(index)
           }
           ```
-    - Form Builder
+    - Form Builder (Clean code)
       - เนื่องจากการใช้ FormControl และการสร้าง Getter เพื่อ Binding ค่านั้นต้องเรียกใช้งานซ้ำๆ
+        - import FormBuilder
+        - ใน constructor ประกาศตัวแปร fb มี type เป็น FormBuilder
   # Custom Form Validators.

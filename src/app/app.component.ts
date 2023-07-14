@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, NgForm, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormControl, NgForm, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,27 +10,48 @@ export class AppComponent {
   form: any;
   emailRegex: string = "[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$";
   contactRegex: string = "[789][0-9]{9}";
-  constructor() {
-    this.form = new FormGroup({
-      fullName: new FormControl('', [
+
+  constructor(fb: FormBuilder) {
+
+    this.form = fb.group({
+      fullName: ['', [
         Validators.required,
         Validators.minLength(5)
-      ]),
-      email: new FormControl('', [
+      ]],
+      email: ['', [
         Validators.required,
-        // Validators.pattern(this.emailRegex)
         Validators.email
-      ]),
-      contactDetails: new FormGroup({
-        address: new FormControl('', Validators.required),
-        shippingAddress: new FormControl('', Validators.required),
-        contactNo: new FormControl('', [
+      ]],
+      contactDetails: fb.group({
+        address: ['', Validators.required],
+        shippingAddress: ['', Validators.required],
+        contactNo: ['', [
           Validators.required,
           Validators.pattern(this.contactRegex)
-        ])
+        ]]
       }),
-      skills: new FormArray([])
-    });
+      skills: fb.array([])
+    })
+    // this.form = new FormGroup({
+    //   fullName: new FormControl('', [
+    //     Validators.required,
+    //     Validators.minLength(5)
+    //   ]),
+    //   email: new FormControl('', [
+    //     Validators.required,
+    //     // Validators.pattern(this.emailRegex)
+    //     Validators.email
+    //   ]),
+    //   contactDetails: new FormGroup({
+    //     address: new FormControl('', Validators.required),
+    //     shippingAddress: new FormControl('', Validators.required),
+    //     contactNo: new FormControl('', [
+    //       Validators.required,
+    //       Validators.pattern(this.contactRegex)
+    //     ])
+    //   }),
+    //   skills: new FormArray([])
+    // });
   }
 
   get fullname(){
