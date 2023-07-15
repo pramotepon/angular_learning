@@ -1008,7 +1008,9 @@
   ```
 
 12. Angular reactive forms
-  # What is reactive forms & How to use them.
+
+# What is reactive forms & How to use them.
+
     - Form setup
       1. import ReactiveFormsModule ในไฟล์ module
         import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -1037,8 +1039,10 @@
         ```
         formControlName="firstName"
         ```
-  # How to validate a reactive form?
-    1. ไฟล์ component ใน FormControl กำหนด initial value = '' และกำหนดเงื่อนไขการ validate ต่างๆใน parameter ที่ 2 
+
+# How to validate a reactive form?
+
+    1. ไฟล์ component ใน FormControl กำหนด initial value = '' และกำหนดเงื่อนไขการ validate ต่างๆใน parameter ที่ 2
     ```
     this.form = new FormGroup({
       fullName: new FormControl('', [
@@ -1091,7 +1095,9 @@
         <div *ngIf="Email.errors?.email" >Pattern</div>
       </div>
       ```
-  # How to get Data From Reactive Forms?
+
+# How to get Data From Reactive Forms?
+
       1. กำหนด disabled ให้ submit button
       ```
       <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
@@ -1106,7 +1112,9 @@
         console.log(this.form.value);
       }
       ```
-  # How to nest form group?
+
+# How to nest form group?
+
     1. กำหนด FormGroup validate ใน component
     ```
     constructor() {
@@ -1166,7 +1174,9 @@
       </div>
     </div>
     ```
-  # Reactive Form Arrays, Form Builders.
+
+# Reactive Form Arrays, Form Builders.
+
     - Form Arrays
       - import FormArray
         import { FormArray } from '@angular/forms';
@@ -1254,7 +1264,9 @@
           })
           ```
         - จะเห็นว่า Code ดูสั้นและเรียบร้อยขึ้น
-  # Custom Form Validators.
+
+# Custom Form Validators.
+
     - username without space
       - Inject form builder ใน constructor
       ```
@@ -1332,3 +1344,208 @@
             }
           }
           ```
+
+13. Angular Routing & Navigation
+
+# What is Angular routing & navigation?
+
+    - Routing is basically means navigating between pages.
+
+# How to implements an angular routing From Scratch?
+
+    - We Use Angular Routers Navigate through Components.
+    - Router is a main building core module of an Angular Framework.
+    - This Includes bunch of directives and modules which help us to implement Routing & Navigation.
+    - Implement Steps
+      1. Configure the Routes.
+      2. Add Router-Outlet
+      3. Add navigation link paths.
+      - ng g c post-list
+      - register angular router ใน imports ของไฟล์ app module และเรียกใช้ method forRoot() โดยส่งค่า array Object เข้าไป [{path: '', component: componentName}]
+        ```
+        import { RouterModule } from '@angular/router';
+        RouterModule.forRoot([
+          { path: 'posts', component: PostListComponent }
+        ])
+        ```
+      - เขียน Router Outlet ใน html
+        ```
+        <router-outlet></router-outlet>
+        ```
+      - ใช้ routerLink ในการ Navigate path
+        ```
+        <button routerLink="/posts">Post List</button>
+        ```
+      - Base Url จะถูกกำหนดไว้ใน index.html
+        ```
+        <base href="/">
+        ```
+      - Base Router
+        - generate component ใหม่
+          ```
+          ng g c home
+          ```
+        - Setting ใน RouterModule ได้เลย 
+          ```
+          { path: '', component: HomeComponent },
+          ```
+      - RouterLink Active
+        - เขียน Css สำหรับ class เมื่อ Active
+        - ใช้ routerLinkActive ในการจัดการในหน้า HTML
+          ```
+          routerLinkActive="active"
+          ```
+# How to pass Router Parameters & Query Parameters?
+  - Parameter Variables
+    - การบอกว่าจะต้องมีการส่ง Parameter มาด้วยใน Path ทำได้โดยใช้ :paramsName
+    ```
+      post/:id
+    ```
+    - การส่งจะใช้ [routerLink]="['/post', index]" (index คือ pk หรือ index ที่เรา Loop มา)
+    - Get Router Parameters
+      - import ActivatedRoute
+        import {ActivatedRoute} from '@angular/router'
+      - Inject Activate route ใน Constructor เป็น private route
+        ```
+        constructor(private route: ActivatedRoute)
+        ```
+      - Access
+        ```
+        this.route.paramMap.subscribe(value=>{
+          // console.log(value);
+          let id = value.get('id')
+          console.log(id);
+        })
+        ```
+# What is Observable & How to use that?
+  - An Observable is a sequence of data that is emitted data async or sync over a time of period.
+  - An Observable will continously observe a set of system data & automatically update or track that sequence of data whenever there is someting changed.
+  - Example
+    - import Observable
+      ```
+      import { Observable } from 'rxjs';
+      ```
+    - Implements OnInit ให้กับ class
+      ```
+      export class AppComponent implements OnInit
+      ```
+    - เขียน Method ngOnInit() และทำการเรียกใช้งาน Observer จะเห็นว่าไม่มีอะไรเกิดขึ้น
+      ```
+      const obsTest$ = new Observable(observer => {
+        console.log("Print from Observer");
+      })
+      ```
+    - เรียกใช้งาน Method subscribe()
+      ```
+      const obsTest$ = new Observable(observer => {
+        console.log("Print from Observer");
+      }).subscribe();
+      ```
+    - การทำงานของ Method subscribe จะเหมือนกับการเรียกใช้งานฟังก์ชั่นแบบทั่วไปเลย
+      ```
+      const obsTest = function(){
+        console.log("Print from function");
+      }
+      obsTest()
+      ```
+    - Observer next
+      - เหมือนกับการ Return ค่าของ JavaScript
+        - เรียกใช้ observer.next
+          ```
+          observer.next("Print from Observer")
+          ```
+        - ใน subscribe ให้เขียน function เพื่อนำค่ามาจัดการ
+          ```
+          .subscribe(value => {
+            console.log(value);
+          })
+          ```
+    - RXJS Observable vs JavaScript functions
+      - RXJS Observable สามารถ return ได้หลายครั้ง
+    - Sync vs Async
+    - Subscriber vs unsubscriber
+# How to get Router parameters & Query Parameters?
+  - Router Parameters.
+  - Query parameter
+    - ใช้ [queryParams] โดยค่าข้างในส่งไปในรูปแบบของ Key value
+      ```
+      [queryParams]="{ page: 1, orderBy: 'newest'}"
+      ```
+    - ใน Component
+      - implements Oninit
+      - Inject private route: ActivatedRoute
+      - นำค่า Query params มาใช้โดย Method queryParamMap.subscribe
+        ```
+        this.route.queryParamMap.subscribe(value => {
+          console.log(value);
+          const page = value.get('page');
+          const orderBy = value.get('orderBy')
+          console.log(page, orderBy);
+        })
+        ```
+  - Separate file for angular routing (Clean code)
+    - Generate file module ขึ้นมาใหม่ 
+      ```
+      ng g module app-routing --module app --flat
+      ```
+    - ลบ CommonModule และ declarations ออกเพราะมำจำเป็นต้องใช้
+    - import RouterModule และเรียกใช้งานใน exports
+      ```
+      import { RouterModule } from '@angular/router';
+      @NgModule({
+        imports: [],
+        exports: [RouterModule]
+      })
+      ```
+    - สร้างตัวแปรมี type เป็น Routes มาเพื่อเก็บ Route ต่างๆ
+      ```
+      const routes: Routes = [
+        { path: '', component: HomeComponent },
+        { path: 'posts', component: PostListComponent },
+        { path: 'post/:id/:title', component: SinglePostComponent }
+      ]
+      ```
+    - ใน imports เรียกใช้งาน Method forRoot ของ RouterModule และส่งค่า routers ที่เรากำหนดไว้เข้าไปด้วย
+      ```
+      imports: [
+        RouterModule.forRoot(routes)
+      ],
+      ```
+    - ลบ Route ที่เราเขียนไว้ใน app.module ออกแล้วลองรัน
+# How to navigate routers programmatically?
+  - การเขียนเป็นฟังก์ชั่นใน Component สามารถใช้งาน Routing params ได้ทุกแบบ
+    - เขียนปุ่มสำหรับ เรียกใช้ Method function
+      ```
+      <button (click)="submit()"></button>
+      ```
+    - Inject private router ใน constructor
+      ```
+      constructor(private router: Router)
+      ```
+    - แบบ Navigate
+      ```
+      submit() {
+        this.router.navigate(['/posts']);
+      }
+      ```
+    - ส่งค่า Parameter
+      ```
+      submit() {
+        this.router.navigate(['/post', 1, 'postTitle']);
+      }
+      ```
+    - ส่งค่า query params
+      ```
+      submit() {
+        this.router.navigate(['/posts'], {  queryParams: {page: 1, order: 'newest'} });
+      }
+      ```
+  - Wild card
+    - Create component ใหม่
+      ```
+      ng g c fornotfound
+      ```
+    - เขียนใน routing เมื่อไม่มี path ที่กำหนดให้ Redirect ไปแสดงหน้า fornotfound
+      ```
+      { path: '**', component: FornotfoundComponent }
+      ```
